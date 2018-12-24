@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load imagefit %}
+{% load staticfiles %} 
+
+{% block content %}
+
+
+
+<h2>{{ block.super }}</h2>
+<div class="thumbnail">
+	<p>ABCD</p>
+	<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Upload</button>
+	</form>
+	
+	{% if url %}
+	<p>
+	height="{{height}}"<br>
+    width="{{width}}"<br>
+ 	</p>
+	
+	<img src="/media/{{ url }}" height="{{height}}" width="{{width}}">
+	<!-- <img src="{{ obj.picture.url }}" height="{{height}}" width="{{width}}"> -->
+	
+		<!-- <img src="/media/{{ url|resize:'thumbnail' }}"> -->
+	{% endif %}
+</div>
+{% endblock %}
